@@ -1,0 +1,27 @@
+# Authors : Baran Farrokhian , Parsa Bastami , Sheida Samadi 
+ 
+# Questoin 4 : Analysing human face 
+# ------------------------------------ 
+ 
+# Library 
+ 
+import cv2  
+ 
+# Human classifier detection 
+ 
+human_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fullbody.x") 
+ 
+# Reciieving image 
+ 
+def detect_human(image.jpg): 
+    image = cv2.imread("image.jpg") 
+ 
+# Turning it into a gray image 
+ 
+    gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY) 
+ 
+# Detecting human 
+ 
+    humans = human_cascade.detectMultiScale(gray,scaleFactor = 1.1 , minNeighbors = 5 , minSize = (30 , 30)) 
+    print("Number of humans found: " , len(humans)) 
+detect_human('image.jpg')
