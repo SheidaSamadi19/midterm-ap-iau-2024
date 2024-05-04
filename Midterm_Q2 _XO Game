@@ -1,0 +1,89 @@
+# Authors : Baran Farrokhian , Parsa Bastami , Sheida Samadi
+
+# Questoin 2 part 3 : XO game
+# ------------------------------------
+
+# Creating Baord
+
+class XO:
+
+def __init__(self):
+self.board = [['-' for _ in range(3)] for _ in range(3)] 
+
+# Displaying The Board
+
+def display_board(self):
+print("Game Board:")
+for row in self.board:
+print(" ".join(row))
+
+# Checking the winners
+
+def check_win(self, player):
+for i in range(3):
+
+# Full Row Condition
+
+if all(self.board[i][j] == player for j in range(3)):
+return True
+
+# Full Column Condition
+
+if all(self.board[j][i] == player for j in range(3)):
+return True
+
+# Fulll Diameter Condition
+
+if all(self.board[i][i] == player for i in range(3)):
+return True
+
+if all(self.board[i][2 - i] == player for i in range(3)):
+return True
+
+return False
+
+# Game Function
+
+def play_game(self):
+current_player = 'X'
+
+# Indicating The Board We Created
+
+while True:
+self.display_board()
+print(f"Player {current_player}, enter your move (row and column): ")
+row, col = map(int, input())
+
+if 1 <= row <= 3 and 1 <= col <= 3 and self.board[row - 1][col - 1] == '-':
+self.board[row - 1][col - 1] = current_player
+
+if self.check_win(current_player):
+print(f"Player {current_player} wins!")
+break
+
+if all(cell != '-' for row in self.board for cell in row):
+print("It's a tie!")
+
+break
+
+current_player = 'O' if current_player == 'X' else 'X'
+else:
+print("Invalid move. Try again.")
+
+# Indicating The Game Function
+
+def main():
+while True:
+start = XO()
+start.play_game()
+
+# Asking Whether The Players Want To Play Again?
+
+replay = input("Do you want to play again? (yes/no):")
+if replay.lower() != "yes":
+print("Thank you for playing! ")
+
+break
+
+if __name__ == "__main__":
+main()
